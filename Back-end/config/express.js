@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const config = require('config');
+const consign = require('consign');
 
 module.exports = () => {
   const app = express();
@@ -11,13 +12,15 @@ module.exports = () => {
   // MIDDLEWARES
   app.use(bodyParser.json());
 
-  return app;
-};
-
-module.exports = () => {
-  const app = express();
+  // ENDPOINTS
+  consign({cwd: 'api'})
+    .then('data')
+    .then('controllers')
+    .then('routes')
+    .into(app);
   
   require('../api/routes/employeeHours')(app);
 
   return app;
 };
+

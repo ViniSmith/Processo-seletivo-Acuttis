@@ -1,6 +1,8 @@
 module.exports = app => {
-  const controller = require('../controllers/employeeHours')();
+  const controller = app.controllers.employeeHours;
 
-  app.route('/api/v1/customer-wallets')
+  app.route('/api/v1/employee-hours')
     .get(controller.listEmployeeHours);
+
+  app.route('/api/v1/new-employee-hours').post(controller.saveEmployeeHours);
 }
