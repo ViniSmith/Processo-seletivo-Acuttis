@@ -1,0 +1,24 @@
+{
+  "employeeHours": {
+    "data": [
+      {
+        "descricao": "Trabalhei na criação de um site",
+        "horaInicial": "8:20",
+        "horaFinal": "16:40",
+        "data": "16/05/2022"
+      },
+      {
+        "descricao": "Trabalhei na criação de um sistema bancário",
+        "horaInicial": "14:30",
+        "horaFinal": "22:00",
+        "data": "16/05/2020"
+      },
+      {
+        "descricao": "Trabalhei na criação de uma api",
+        "horaInicial": "6:00",
+        "horaFinal": "13:30",
+        "data": "13/05/2022"
+      }
+    ]
+  }
+}

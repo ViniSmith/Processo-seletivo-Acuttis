@@ -13,3 +13,11 @@ module.exports = () => {
 
   return app;
 };
+
+module.exports = () => {
+  const app = express();
+  
+  require('../api/routes/employeeHours')(app);
+
+  return app;
+};
