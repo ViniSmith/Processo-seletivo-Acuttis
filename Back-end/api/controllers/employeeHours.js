@@ -45,5 +45,37 @@ module.exports = app => {
     }
   };
 
+  controller.updateEmployeeHours = (req, res) => {
+    const {
+      registerId,
+    } = req.params;
+    const foundEmployeeHoursIndex = employeeHoursMock.data.findIndex(employee => employee.id == registerId);
+
+    if(foundEmployeeHoursIndex == -1) {
+      res.status(404).json({
+        message: 'Hora não encontrada na base.',
+        sucess: false,
+        emplooyeHours: employeeHoursMock,
+      });
+    }else {
+      const newEmployeeHours = {
+        id: registerId,
+        description: req.body.description,
+        startHour: req.body.startHour,
+        endHour: req.body.endHour,
+        date: req.body.date,
+        createdAt: new Date()
+      };
+
+      employeeHoursMock.data.splice(foundEmployeeHoursIndex, 1, newEmployeeHours);
+
+      res.status(200).json({
+        message: 'Hora encontrada e atualizada com sucesso!',
+        sucess: true,
+        employeeHours: employeeHoursMock,
+      });
+    }
+  }
+  
   return controller;
 }

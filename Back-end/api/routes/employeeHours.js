@@ -7,5 +7,6 @@ module.exports = app => {
   app.route('/api/v1/new-employee-hours').post(controller.saveEmployeeHours);
 
   app.route('/api/v1/employee-hours/:registerId')
-    .delete(controller.removeEmployeeHours);
+    .delete(controller.removeEmployeeHours)
+    .put(controller.updateEmployeeHours);
 }
