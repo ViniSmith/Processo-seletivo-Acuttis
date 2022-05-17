@@ -1,9 +1,8 @@
 class HourRegister {
-  constructor(description, startHour, endHour, date, id){
+  constructor(description, startHour, endHour, id){
     this.description = description;
     this.startHour = startHour;
     this.endHour = endHour;
-    this.date = date;
     this.id = id;
   }
   get _totalHours() {
@@ -60,6 +59,7 @@ class HourRegister {
 }
 
   //TESTE DE FUNCIONAMENTO
-// const endHour = new HourRegister("adssadasd", "06:45", "23:59", '24 December 2018');
-// console.log(endHour._totalHours);
+const endHour = new HourRegister("adssadasd", "06:45", "23:59", '24 December 2018');
+console.log(endHour._totalHours);
 
+module.exports = HourRegister;

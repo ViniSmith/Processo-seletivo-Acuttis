@@ -1,16 +1,16 @@
-import HourRegister from('../models/HourRegister');
-
 class DayRegister{
-  constructor(totalHours, afternoonHours, morningHours) {
-    this.afternoonHours = _totalAfternoonHours(afternoonHours);
-    this.morningHours = _totalMorning(morningHours)
-
+  constructor(id, date, dayWorked) {
+    this.id = id;
+    this.date = date;
+    this.dayWorked = dayWorked;
   }
   get _totalHours() {
-    const percorrer = () => {
-
-    }
-
+    this.dayWorked.forEach(element => {
+      let totalHoursOfTheDay = 0;
+      totalHoursOfTheDay = this.element._totalHours;
+      return totalHoursOfTheDay;
+    });
   }
 }
 
+module.exports = DayRegister;

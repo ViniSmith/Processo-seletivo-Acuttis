@@ -1,27 +1,6 @@
 {
   "employeeHours": {
     "data": [
-      {
-        "id": "12312552",
-        "description": "Trabalhei na criação de um site",
-        "startHour": "8:20",
-        "endHour": "16:40",
-        "data": "16/05/2022"
-      },
-      {
-        "id": "541259",
-        "description": "Trabalhei na criação de um sistema bancário",
-        "startHour": "14:30",
-        "endHour": "22:00",
-        "date": "16/05/2020"
-      },
-      {
-        "id": "699215",
-        "description": "Trabalhei na criação de uma api",
-        "startHour": "6:00",
-        "endHour": "13:30",
-        "date": "13/05/2022"
-      }
     ]
   }
 }
