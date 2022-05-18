@@ -1,0 +1,48 @@
+.dayRow {
+    margin-bottom: 40px;
+}
+
+.dayRow--header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dayRow--header .date, .dayRow--header .totalHours div{
+    padding: 9px 20px;
+    background-color: var(--primary-color);
+    color: var(--default-white);
+    
+}
+.dayRow--header .totalHours{
+    display: flex;
+}
+
+.dayRow--header .totalHours div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+    padding: 9px 12px;
+}
+
+.dayRow--header .totalHours span{
+    font-size: 1em;
+    margin: 0;
+}
+
+.dayRow--header .date{
+    font-size: 1em;
+    font-weight: normal;
+    margin-bottom: -2px;
+    background-color: var(--tertiary-color);
+}
+
+.dayRow--header .totalHours .total{
+    background-color: var(--secondary-color);
+}
+
+.dayRow .registerList{
+    margin: 0px;
+    padding: 0px;
+}
