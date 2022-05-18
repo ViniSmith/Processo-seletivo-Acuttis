@@ -4,46 +4,61 @@ class HourRegister {
     this.startHour = startHour;
     this.endHour = endHour;
     this.id = id;
+    this.totalHours;
+    this.totalMorning;
+    this.totalAfternoon;
   }
-  get _totalHours() {
-    const hoursAfternoon =  this._totalAfternoon.split(':');
-    const hoursMorning = this._totalMorning.split(':');
+  _totalHoursFunction() {
+    const hoursAfternoon = this.totalAfternoon.split(':');
+    const hoursMorning = this.totalMorning.split(':');
     let totalHours = 0;
     let totalMinutes = 0;
 
-    if(hoursAfternoon[1] + hoursMorning[1] > 59) {
+    if((+hoursAfternoon[1] + +hoursMorning[1]) > 59) {
       totalMinutes = (+hoursAfternoon[1] + +hoursMorning[1]) - 59;
-      totalHours ++;
+      totalHours =+ 1;
     }
+
+    totalMinutes = (+hoursAfternoon[1] + +hoursMorning[1]);
     totalHours += (+hoursAfternoon[0] + +hoursMorning[0]);
     if(totalMinutes < 10) {
       totalMinutes = "0"+totalMinutes;
     }
-    return `${totalHours}:${totalMinutes}`;
+    this.totalHours = `${totalHours}:${totalMinutes}`;
   }
-  get _totalAfternoon() {
-    const startAfternoon = new Date(this.date + " 12:00");
-    const endHour = new Date(this.date + " " + this.endHour);
+  _totalAfternoonFunction() {
+    const startAfternoon = new Date("2001-12-01 12:00");
+    const endHour = new Date("2001-12-01 " + this.endHour);
     if(endHour.getTime() > startAfternoon.getTime()) {
       const timestampDiff = endHour.getTime() - startAfternoon.getTime();
       const hours = this._hours(timestampDiff);
-      const minutes = this._minutes(timestampDiff);
-      return `${hours}:${minutes}`;
+      let minutes = this._minutes(timestampDiff);
+      console.log(`af${hours}:${minutes}`);
+
+      if(minutes < 10 && minutes.lenght != "00") {
+        minutes = "0"+minutes;
+      }
+      this.totalAfternoon = `${hours}:${minutes}`;
+      
     }else {
-      return "00:00";
+      this.totalAfternoon = "00:00";
     }
   }
 
-  get _totalMorning() {
-    const endMorning = new Date(this.date + " 11:59");
-    const startHour = new Date(this.date + " " + this.startHour);
-    if(startHour.getTime() < endMorning.getTime()) {
+  _totalMorningFunction() {
+    const endMorning = new Date("2001-12-01 12:00");
+    const startHour = new Date("2001-12-01 " + this.startHour);
+    if(startHour.getTime() <= endMorning.getTime()) {
       const timestampDiff = endMorning.getTime() - startHour.getTime();
       const hours = this._hours(timestampDiff);
-      const minutes = this._minutes(timestampDiff);
-      return `${hours}:${minutes}`;
+      let minutes = this._minutes(timestampDiff);
+      console.log(`mor${hours}:${minutes}`);
+      if(minutes < 10 && minutes.lenght != "00") {
+        minutes = "0"+minutes;
+      }
+      this.totalMorning = `${hours}:${minutes}`;
     }else{
-      return "00:00";
+      this.totalMorning = "00:00";
     }
   }
 

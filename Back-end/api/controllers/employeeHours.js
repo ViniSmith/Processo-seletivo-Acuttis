@@ -18,6 +18,9 @@ module.exports = (app) => {
       req.body.endHour,
       uuidv4(),
     );
+      register._totalAfternoonFunction();
+      register._totalMorningFunction();
+      register._totalHoursFunction();
     let registerInDB = null;
     let indexRegister;
     employeeHoursMock.data.forEach((item, index) => {
@@ -29,6 +32,9 @@ module.exports = (app) => {
 
     if (registerInDB !== null) {
       registerInDB.dayWorked.push(register);
+      registerInDB._totalHoursFunction();
+      registerInDB._totalMorningFunction();
+      registerInDB._totalAfternoonFunction();
       employeeHoursMock.data.splice(indexRegister, 1, registerInDB);
     } else {
       const arrayRegister = [register];
@@ -37,6 +43,11 @@ module.exports = (app) => {
         req.body.date,
         arrayRegister,
       );
+
+      registerDay._totalHoursFunction();
+      registerDay._totalMorningFunction();
+      registerDay._totalAfternoonFunction();
+      console.log(registerDay);
       employeeHoursMock.data.push(registerDay);
     }
 
@@ -45,6 +56,7 @@ module.exports = (app) => {
 
   controller.removeEmployeeHours = (req, res) => {
     const { registerId } = req.params;
+    console.log("qualqeurcoisa ", registerId);
 
     let dayRegister = null;
     let hourRegisterIndex = 0;
@@ -74,6 +86,9 @@ module.exports = (app) => {
       } else {
         employeeHoursMock.data.splice(dayRegisterIndex, 1, dayRegister);
       }
+      dayRegister._totalHoursFunction();
+      dayRegister._totalMorningFunction();
+      dayRegister._totalAfternoonFunction();
 
       res.status(200).json({
         message: 'Horário encontrado e deletado com suesso',
@@ -85,6 +100,8 @@ module.exports = (app) => {
 
   controller.updateEmployeeHours = (req, res) => {
     const { registerId } = req.params;
+    console.log("updateporra", registerId);
+    console.log(res.body);
 
     const newRegister = new HourRegister(
       req.body.description,
@@ -117,6 +134,9 @@ module.exports = (app) => {
       });
     } else {
       dayRegister.dayWorked.splice(hourRegisterIndex, 1);
+      dayRegister._totalHoursFunction();
+      dayRegister._totalMorningFunction();
+      dayRegister._totalAfternoonFunction();
       if (dayRegister.dayWorked.length === 0) {
         employeeHoursMock.data.splice(dayRegisterIndex, 1);
       } else {
@@ -134,6 +154,9 @@ module.exports = (app) => {
 
       if (registerInDB !== null) {
         registerInDB.dayWorked.push(newRegister);
+        registerInDB._totalHoursFunction();
+        registerInDB._totalMorningFunction();
+        registerInDB._totalAfternoonFunction();
         employeeHoursMock.data.splice(indexRegisterInDB, 1, registerInDB);
       } else {
         const arrayRegister = [newRegister];
@@ -142,8 +165,20 @@ module.exports = (app) => {
           req.body.date,
           arrayRegister,
         );
+
+        registerDay._totalHoursFunction();
+        registerDay._totalMorningFunction();
+        registerDay._totalAfternoonFunction();
+        
         employeeHoursMock.data.push(registerDay);
       }
+
+      // function organize(a, b) {
+      //   return a.date < b.date;
+      // }
+
+      // employeeHoursDB.data.sort(organize);
+      // console.log(employeeHoursDB);
 
       res.status(200).json({
         message: 'Hora encontrada e atualizada com sucesso!',
