@@ -47,7 +47,6 @@ module.exports = (app) => {
       registerDay._totalHoursFunction();
       registerDay._totalMorningFunction();
       registerDay._totalAfternoonFunction();
-      console.log(registerDay);
       employeeHoursMock.data.push(registerDay);
     }
 
@@ -56,7 +55,6 @@ module.exports = (app) => {
 
   controller.removeEmployeeHours = (req, res) => {
     const { registerId } = req.params;
-    console.log("qualqeurcoisa ", registerId);
 
     let dayRegister = null;
     let hourRegisterIndex = 0;
@@ -100,8 +98,6 @@ module.exports = (app) => {
 
   controller.updateEmployeeHours = (req, res) => {
     const { registerId } = req.params;
-    console.log("updateporra", registerId);
-    console.log(res.body);
 
     const newRegister = new HourRegister(
       req.body.description,
@@ -173,12 +169,7 @@ module.exports = (app) => {
         employeeHoursMock.data.push(registerDay);
       }
 
-      // function organize(a, b) {
-      //   return a.date < b.date;
-      // }
-
-      // employeeHoursDB.data.sort(organize);
-      // console.log(employeeHoursDB);
+    
 
       res.status(200).json({
         message: 'Hora encontrada e atualizada com sucesso!',
