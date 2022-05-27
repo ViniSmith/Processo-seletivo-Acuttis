@@ -1,12 +1,10 @@
-const API_BASE = 'http://192.168.100.78:8080/api/v1';
+const API_BASE = 'localhost:8080/api/v1';
 
 const basicFetch = async (endpoint) => {
     const request = await fetch(`${API_BASE}${endpoint}`);
     const json = await request.json();
     return json;
 }
-
-
 export default {
     getRegisters: async () => {
         return await basicFetch('/employee-hours');
