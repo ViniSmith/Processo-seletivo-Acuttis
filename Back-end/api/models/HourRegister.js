@@ -13,6 +13,8 @@ class HourRegister {
     const hoursMorning = this.totalMorning.split(':');
     let totalHours = 0;
     let totalMinutes = 0;
+    console.log(hoursAfternoon, "horas afternoon");
+    console.log(hoursMorning, "horas morning");
 
     if((+hoursAfternoon[1] + +hoursMorning[1]) > 59) {
       totalMinutes = (+hoursAfternoon[1] + +hoursMorning[1]) - 59;
@@ -27,17 +29,20 @@ class HourRegister {
     this.totalHours = `${totalHours}:${totalMinutes}`;
   }
   _totalAfternoonFunction() {
-    const startAfternoon = new Date("2001-12-01 12:00");
+    const startAfternoon = this.startHour.substr(0, 2) >= 12 ? new Date("2001-12-01 " + this.startHour) :  new Date("2001-12-01 12:00");
+    console.log(this.startHour.substr(0, 2), "START")
     const endHour = new Date("2001-12-01 " + this.endHour);
+
     if(endHour.getTime() > startAfternoon.getTime()) {
       const timestampDiff = endHour.getTime() - startAfternoon.getTime();
       const hours = this._hours(timestampDiff);
       let minutes = this._minutes(timestampDiff);
-      console.log(`af${hours}:${minutes}`);
+      console.log(`afternoon${hours}:${minutes}`);
 
       if(minutes < 10 && minutes.lenght != "00") {
         minutes = "0"+minutes;
       }
+
       this.totalAfternoon = `${hours}:${minutes}`;
       
     }else {
